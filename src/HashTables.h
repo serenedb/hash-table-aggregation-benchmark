@@ -5,8 +5,10 @@
 
 #include <ClickHouseHashTable/HashMap.h>
 #include <absl/container/flat_hash_map.h>
+#include <boost/unordered/unordered_flat_map.hpp>
 #include <flat_hash_map/bytell_hash_map.hpp>
 #include <flat_hash_map/flat_hash_map.hpp>
+#include <folly/container/F14Map.h>
 #include <hopscotch-map/include/tsl/hopscotch_map.h>
 #include <sparsehash/dense_hash_map>
 #include <unordered_dense/include/ankerl/unordered_dense.h>
@@ -18,6 +20,22 @@ struct ClickHouseHashTableType
 {
     using HashTable = HashMap<Key, UInt64, Hash>;
     static constexpr std::string_view description = "ClickHouse HashMap";
+    static constexpr bool has_initialization = false;
+};
+
+template <typename Key, typename Hash>
+struct BoostHashTableType
+{
+    using HashTable = ::boost::unordered_flat_map<Key, UInt64, Hash>;
+    static constexpr std::string_view description = "boost::unordered_flat_map";
+    static constexpr bool has_initialization = false;
+};
+
+template <typename Key, typename Hash>
+struct FollyHashTableType
+{
+    using HashTable = ::folly::F14FastMap<Key, UInt64, Hash>;
+    static constexpr std::string_view description = "folly::F14FastMap";
     static constexpr bool has_initialization = false;
 };
 
@@ -83,6 +101,10 @@ template <typename Key, typename Hash, typename Callback>
 void dispatchHashTableType(std::string_view hash_table_type, Callback && callback)
 {
     if (hash_table_type == "ch_hash_map")
+        callback(ClickHouseHashTableType<Key, Hash>());
+    else if (hash_table_type == "boost_hash_map")
+        callback(BoostHashTableType<Key, Hash>());
+    else if (hash_table_type == "f14_hash_map")
         callback(ClickHouseHashTableType<Key, Hash>());
     else if (hash_table_type == "absl_hash_map")
         callback(AbseilHashTableType<Key, Hash>());
