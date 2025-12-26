@@ -21,7 +21,7 @@ set (CMAKE_C_STANDARD_REQUIRED ON)
 set (COMPILER_FLAGS "${COMPILER_FLAGS} -falign-functions=32 -fno-omit-frame-pointer")
 
 if (ARCH_AMD64)
-    set (COMPILER_FLAGS "${COMPILER_FLAGS} -mssse3 -msse4.1 -msse4.2 -mpclmul -mpopcnt -mbranches-within-32B-boundaries")
+    set (COMPILER_FLAGS "${COMPILER_FLAGS} -mssse3 -msse4.1 -msse4.2 -mpclmul -mpopcnt -mbranches-within-32B-boundaries -march=x86-64-v3")
 endif()
 
 set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra")
