@@ -386,6 +386,9 @@ struct hasher<unsigned char> : detail::integral_hasher<unsigned char> {};
 template <>
 struct hasher<signed char> : detail::integral_hasher<signed char> {};
 
+template <>
+struct hasher<char8_t> : detail::integral_hasher<char8_t> {};
+
 template <> // char is a different type from both signed char and unsigned char
 struct hasher<char> : detail::integral_hasher<char> {};
 
