@@ -105,7 +105,7 @@ void dispatchHashTableType(std::string_view hash_table_type, Callback && callbac
     else if (hash_table_type == "boost_hash_map")
         callback(BoostHashTableType<Key, Hash>());
     else if (hash_table_type == "f14_hash_map")
-        callback(ClickHouseHashTableType<Key, Hash>());
+        callback(FollyHashTableType<Key, Hash>());
     else if (hash_table_type == "absl_hash_map")
         callback(AbseilHashTableType<Key, Hash>());
     else if (hash_table_type == "google_dense_hash_map")
