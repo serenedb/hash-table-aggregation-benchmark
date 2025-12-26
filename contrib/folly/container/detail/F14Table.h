@@ -1358,6 +1358,7 @@ class F14Table : public Policy {
     // folly/container/test/F14SmallOverheads.cpp
     return _bzhi_u64(index, chunkShift());
 #else
+    static_assert(false);
     return index & ((std::size_t(1) << chunkShift()) - 1);
 #endif
   }

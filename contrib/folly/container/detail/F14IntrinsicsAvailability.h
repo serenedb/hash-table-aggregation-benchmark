@@ -62,8 +62,10 @@ enum class F14IntrinsicsMode { None, Simd, SimdAndCrc };
 
 static constexpr F14IntrinsicsMode getF14IntrinsicsMode() {
 #if !FOLLY_F14_VECTOR_INTRINSICS_AVAILABLE
+  static_assert(false);
   return F14IntrinsicsMode::None;
 #elif !FOLLY_F14_CRC_INTRINSIC_AVAILABLE
+  static_assert(false);
   return F14IntrinsicsMode::Simd;
 #else
   return F14IntrinsicsMode::SimdAndCrc;
