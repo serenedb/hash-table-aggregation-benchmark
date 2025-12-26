@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
 #include <functional>
+#include <string>
 
 #include <ClickHouseHashTable/Hash.h>
 #include <absl/hash/hash.h>

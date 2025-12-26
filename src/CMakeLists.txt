@@ -1,5 +1,11 @@
 add_headers_and_sources(hash_table_aggregation_benchmark ${CMAKE_CURRENT_SOURCE_DIR})
-add_executable(hash_table_aggregation_benchmark ${hash_table_aggregation_benchmark_headers} ${hash_table_aggregation_benchmark_sources})
+add_executable(hash_table_aggregation_benchmark 
+    ${hash_table_aggregation_benchmark_headers} 
+    ${hash_table_aggregation_benchmark_sources}
+    ../contrib/folly/container/detail/F14Table.cpp
+    ../contrib/folly/lang/SafeAssert.cpp
+    ../contrib/folly/lang/ToAscii.cpp
+)
 target_link_libraries(hash_table_aggregation_benchmark PRIVATE
     clickhouse_hash_table
     abseil_swiss_tables
