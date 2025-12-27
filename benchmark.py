@@ -21,7 +21,12 @@ FILES = [
     "data/AdvEngineID.bin",
 ]
 
-HASH_FUNCTIONS = ["std_hash", "ch_hash", "absl_hash", "folly_hash"]
+HASH_FUNCTIONS = [
+    "std_hash", 
+    "ch_hash", 
+    "absl_hash", 
+    "folly_hash",
+]
 
 HASH_TABLES = [
     "ch_hash_map",
